@@ -19,7 +19,12 @@
       <h1>  Ваша геолокація: </h1>
    <div id="map"></div>
    </div>
-<model-viewer id="madonna" ar ar-modes="webxr" camera-controls touch-action="pan-y" src="/assets/3D/lutsk.glb" orientation="-3deg 3deg 0" width="100%" height="100%" tone-mapping="aces" shadow-intensity="1" alt="A 3D model of an astronaut.">
+<model-viewer id="madonna" ar ar-modes="webxr" loading="eager" camera-controls touch-action="pan-y" src="/assets/3D/lutsk.glb" orientation="-3deg 3deg 0" tone-mapping="aces">
+<button slot="ar-button" style="background-color: white; border-radius: 4px; border: solid #000000; position: absolute; top: 16px; right: 90px; left: 270px; ">
+
+Переглянути в AR
+
+</button>
   <button slot="hotspot-1" id="hotspot-1" data-tooltip="Hotspot 1" data-position="-1 1.3 1.3" data-normal="-0.73 0.05 0.69 style="background: #ff1b00; border: none; outline: none;" 
           onclick="showText('Побудована в XIII-XIV століттях, ймовірно, між 1340 і 1350 роками під час правління князя Любарта. В`їзна вежа стала основним входом до замку і відігравала важливу роль у обороні, забезпечуючи контроль над підходами до фортеці.')">
     <span style="display: none;">Hotspot 1</span>
@@ -80,6 +85,7 @@
     
     var customLayer = L.layerGroup().addTo(map);
 
+    document.addEventListener('DOMContentLoaded', function () {
     if(!navigator.geolocation) {
         alert("Ваш браузер не підтримує цю функцію!")
     } else {
@@ -87,6 +93,7 @@
             navigator.geolocation.getCurrentPosition(getPosition)
         }, 5000);
     }
+});
 
     var marker, circle;
 
